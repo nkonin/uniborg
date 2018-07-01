@@ -4,10 +4,14 @@
 
 import logging
 
+from dotenv import load_dotenv
 from uniborg import Uniborg
+from uniborg.util import get_proxy
 
 logging.basicConfig(level=logging.INFO)
 
-borg = Uniborg("stdborg", plugin_path="stdplugins", connection_retries=None)
+load_dotenv()
+
+borg = Uniborg("stdborg", plugin_path="stdplugins", connection_retries=None, proxy=get_proxy())
 
 borg.run_until_disconnected()
